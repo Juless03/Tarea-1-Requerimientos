@@ -24,7 +24,6 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.text.ParseException;
 import java.util.ArrayList;
-import oracle.jdbc.OracleTypes;
 import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.JComboBox;
