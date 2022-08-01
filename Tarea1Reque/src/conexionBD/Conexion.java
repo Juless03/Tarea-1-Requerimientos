@@ -41,13 +41,7 @@ public class Conexion {
     private static final String user="root";
     private static final String pass="";
     private static final String url="jdbc:mysql://localhost:3306/mtec";
-    /*
-      public static Connection conectorBaseNueva() throws SQLException {
-        
-        Connection con = DriverManager.getConnection(url, user, pass);
-        return con;
-        }
-    */
+
      public static Connection  conectorBaseNueva() throws SQLException {
         try{
             Class.forName(driver);
@@ -57,5 +51,7 @@ public class Conexion {
             System.out.println("Error al conectar a la base de datos");
         }
         return con;
-      }  
+    } 
+     
+    
 }
