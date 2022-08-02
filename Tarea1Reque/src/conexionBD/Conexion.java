@@ -37,7 +37,7 @@ public class Conexion {
     private static Connection con;
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String user = "root";
-    private static final String pass = "camelCase1010";
+    private static final String pass = "01Alvarado01";
     private static final String url = "jdbc:mysql://localhost:3306/tarea1requerimientos";
 
     public static Connection conector() throws SQLException {
@@ -65,6 +65,16 @@ public class Conexion {
         CallableStatement stmt = con.prepareCall("{?= call getPersonEmail(?)}");
         stmt.registerOutParameter(1, Types.VARCHAR);
         stmt.setString(2, pCorreo);
+        stmt.execute();
+        String Resultado = stmt.getString(1);
+        return Resultado;
+    }
+    
+    public static String personPassword(String pContrasenna) throws SQLException {
+        Connection con = conector();
+        CallableStatement stmt = con.prepareCall("{?= call getPersonPassword(?)}");
+        stmt.registerOutParameter(1, Types.VARCHAR);
+        stmt.setString(2, pContrasenna);
         stmt.execute();
         String Resultado = stmt.getString(1);
         return Resultado;

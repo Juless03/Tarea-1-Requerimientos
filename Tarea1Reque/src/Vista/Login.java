@@ -25,6 +25,7 @@ public class Login extends javax.swing.JDialog {
 
     private Conexion Conexion = new Conexion();
     
+    
     /**
      * Creates new form Login
      */
@@ -38,6 +39,8 @@ public class Login extends javax.swing.JDialog {
         logoLogin1.setIcon(imageIcon);
         this.setLocationRelativeTo(null);
         panel2.setVisible(false);
+        
+        
     }
 
     private void cleanCorreo() {
@@ -102,9 +105,9 @@ public class Login extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         panel1IniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
+        panel1IniciarSesion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         panel1IniciarSesion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         panel1IniciarSesion.add(logoLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 90, 90));
 
@@ -120,10 +123,8 @@ public class Login extends javax.swing.JDialog {
         correoTexto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         correoTexto.setForeground(new java.awt.Color(102, 102, 102));
         correoTexto.setText("Correo Electrónico");
-        correoTexto.setAutoscrolls(false);
         correoTexto.setBorder(null);
         correoTexto.setName("Place"); // NOI18N
-        correoTexto.setRequestFocusEnabled(false);
         correoTexto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 correoTextoMouseClicked(evt);
@@ -173,6 +174,7 @@ public class Login extends javax.swing.JDialog {
         panel1IniciarSesion.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
 
         panel2.setBackground(new java.awt.Color(255, 255, 255));
+        panel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         panel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         panel2.add(logoLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 90, 90));
 
@@ -318,7 +320,7 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_correoTextoKeyPressed
 
     private void correoTextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoTextoKeyTyped
-        //cleanCorreo(); 
+
     }//GEN-LAST:event_correoTextoKeyTyped
 
     private void correoTextoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoTextoKeyReleased
@@ -326,31 +328,52 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_correoTextoKeyReleased
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
+
         if(!correoTexto.getText().isEmpty()) {
-            String Correo = correoTexto.getText();
-            try {
-                String correoPersona = Conexion.personMail(correoTexto.getText());
-                if (correoPersona == null) {
-                    JOptionPane.showMessageDialog(null, "Error\nEl correo es incorrecto. Intente de nuevo");
-                } else {
-                    if (correoPersona.equals(Correo)) {
-                        this.dispose();
-                        panel2.setVisible(true);
-                        panel1IniciarSesion.setVisible(false);
-                        jLabel1.setText(correoTexto.getText());
-                        
+                String Correo;
+                Correo = correoTexto.getText().toLowerCase();
+                try {
+                    String correoPersona;
+                    correoPersona = Conexion.personMail(Correo);
+                    if (correoPersona == null) {
+                        JOptionPane.showMessageDialog(null, "Error\nEl correo no se encuentra en el sistema. Intente de nuevo");
+                    } else {
+                        if (correoPersona.equals(Correo)) {
+                            JOptionPane.showMessageDialog(null,"Correo ingresado satisfactoriamente");
+                            panel2.setVisible(true);
+                            panel1IniciarSesion.setVisible(false);
+                            jLabel1.setText(correoTexto.getText());
+                        }
                     }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error\nCampo vacío.");
+            }    
+    }//GEN-LAST:event_botonSiguienteActionPerformed
+
+    private void botonSiguiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguiente1ActionPerformed
+          if(!passwordTexto.getText().isEmpty()) {
+            String Contraseña;
+            Contraseña = String.valueOf(passwordTexto.getPassword()).toLowerCase();
+            String contraseñaPersona = null;
+              try {
+                  contraseñaPersona = Conexion.personPassword(passwordTexto.getText());
+              } catch (SQLException ex) {
+                  Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+              }
+            if (contraseñaPersona == null) {
+                JOptionPane.showMessageDialog(null, "Error\nContraseña incorrecta. Intente de nuevo");
+            } else {
+                if (contraseñaPersona.equals(Contraseña)) {
+                    JOptionPane.showMessageDialog(null,"Inició sesión con éxito.");
+                    this.dispose();
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Error\nCampo vacío.");
         }
-    }//GEN-LAST:event_botonSiguienteActionPerformed
-
-    private void botonSiguiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguiente1ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_botonSiguiente1ActionPerformed
         
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
