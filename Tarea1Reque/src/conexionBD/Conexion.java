@@ -32,26 +32,41 @@ import javax.swing.JComboBox;
  * @author Juley
  */
 public class Conexion {
-
     
-    
-    // Nueva conexión msql
+    //Conexión con la base de datos
     private static Connection con;
-    private static final String driver="com.mysql.jdbc.Driver";
-    private static final String user="root";
-    private static final String pass="";
-    private static final String url="jdbc:mysql://localhost:3306/mtec";
+    private static final String driver = "com.mysql.jdbc.Driver";
+    private static final String user = "root";
+    private static final String pass = "camelCase1010";
+    private static final String url = "jdbc:mysql://localhost:3306/tarea1requerimientos";
 
-     public static Connection  conectorBaseNueva() throws SQLException {
-        try{
+    public static Connection conector() throws SQLException {
+        try {
             Class.forName(driver);
             con = (Connection) DriverManager.getConnection(url, user, pass);
-        }
-        catch (ClassNotFoundException | SQLException e){
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error al conectar a la base de datos");
         }
         return con;
-    } 
-     
-    
+    }
+
+    public static int personId(String pCorreo) throws SQLException {
+        Connection con = conector();
+        CallableStatement stmt = con.prepareCall("{?= call getPersonId(?)}");
+        stmt.registerOutParameter(1, Types.VARCHAR);
+        stmt.setString(2, pCorreo);
+        stmt.execute();
+        int Resultado = stmt.getInt(1);
+        return Resultado;
+    }
+
+    public static String personMail(String pCorreo) throws SQLException {
+        Connection con = conector();
+        CallableStatement stmt = con.prepareCall("{?= call getPersonEmail(?)}");
+        stmt.registerOutParameter(1, Types.VARCHAR);
+        stmt.setString(2, pCorreo);
+        stmt.execute();
+        String Resultado = stmt.getString(1);
+        return Resultado;
+    }
 }

@@ -5,10 +5,17 @@
  */
 package logica;
 
+import static conexionBD.Conexion.conector;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Types;
+
 /**
  *
  * @author Juley
  */
 public class Controlador {
-    
+
+  
 }

@@ -5,14 +5,17 @@
  */
 package Vista;
 
-import java.awt.Color;
+import conexionBD.Conexion;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -20,6 +23,8 @@ import javax.swing.ImageIcon;
  */
 public class Login extends javax.swing.JDialog {
 
+    private Conexion Conexion = new Conexion();
+    
     /**
      * Creates new form Login
      */
@@ -34,28 +39,33 @@ public class Login extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         panel2.setVisible(false);
     }
-    private void cleanCorreo(){
-        if(correoTexto.getText().equals("Correo Electrónico"))
+
+    private void cleanCorreo() {
+        if (correoTexto.getText().equals("Correo Electrónico")) {
             correoTexto.setText("");
+        }
         //incorrectUsername.setVisible(false);
         //incorrectPassword.setVisible(false);
     }
-    private void resetCorreo(){
-        if(correoTexto.getText().isEmpty())
+
+    private void resetCorreo() {
+        if (correoTexto.getText().isEmpty()) {
             correoTexto.setText("Correo Electrónico");
+        }
     }
-    
-     private void cleanPassword(){
-        if(String.valueOf(passwordTexto.getPassword()).equals("Contraseña")){
+
+    private void cleanPassword() {
+        if (String.valueOf(passwordTexto.getPassword()).equals("Contraseña")) {
             passwordTexto.setText("");
             passwordTexto.setEchoChar('*');
             verContraseña.setVisible(true);
         }
     }
-    private void resetPassword(){
-        if(String.valueOf(passwordTexto.getPassword()).isEmpty()){
-            passwordTexto.setEchoChar((char)0);
-            passwordTexto.setText("Contraseña"); 
+
+    private void resetPassword() {
+        if (String.valueOf(passwordTexto.getPassword()).isEmpty()) {
+            passwordTexto.setEchoChar((char) 0);
+            passwordTexto.setText("Contraseña");
             verContraseña.setVisible(false);
         }
     }
@@ -316,12 +326,27 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_correoTextoKeyReleased
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
-        String Correo;
-        Correo = correoTexto.getText();
-        
-        panel2.setVisible(true);
-        panel1IniciarSesion.setVisible(false);
-        jLabel1.setText(correoTexto.getText());
+        if(!correoTexto.getText().isEmpty()) {
+            String Correo = correoTexto.getText();
+            try {
+                String correoPersona = Conexion.personMail(correoTexto.getText());
+                if (correoPersona == null) {
+                    JOptionPane.showMessageDialog(null, "Error\nEl correo es incorrecto. Intente de nuevo");
+                } else {
+                    if (correoPersona.equals(Correo)) {
+                        this.dispose();
+                        panel2.setVisible(true);
+                        panel1IniciarSesion.setVisible(false);
+                        jLabel1.setText(correoTexto.getText());
+                        
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Error\nCampo vacío.");
+        }
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
     private void botonSiguiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguiente1ActionPerformed
