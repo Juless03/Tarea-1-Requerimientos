@@ -37,7 +37,11 @@ public class Conexion {
     private static Connection con;
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String user = "root";
-    private static final String pass = "01Alvarado01";
+<<<<<<< HEAD
+    private static final String pass = "rootroot";
+=======
+    private static final String pass = "Brajoscasso042003.";
+>>>>>>> fc43382e91c8f26bec563f6d90310f90c3195a96
     private static final String url = "jdbc:mysql://localhost:3306/tarea1requerimientos";
 
     public static Connection conector() throws SQLException {
@@ -62,7 +66,7 @@ public class Conexion {
 
     public static String personMail(String pCorreo) throws SQLException {
         Connection con = conector();
-        CallableStatement stmt = con.prepareCall("{?= call getPersonEmail(?)}");
+        CallableStatement stmt = con.prepareCall("{?= call getUserEmail(?)}");
         stmt.registerOutParameter(1, Types.VARCHAR);
         stmt.setString(2, pCorreo);
         stmt.execute();
@@ -78,5 +82,16 @@ public class Conexion {
         stmt.execute();
         String Resultado = stmt.getString(1);
         return Resultado;
+    }
+    
+      public static boolean addUser(String pCorreo, String pContra, String ptipo) throws SQLException, ParseException {
+
+        Connection con = conector();
+        CallableStatement stmt = con.prepareCall("{ call add_user(?,?,?) }");
+        stmt.setString(1, pCorreo);
+        stmt.setString(2, pContra);
+        stmt.setString(3, ptipo);
+        stmt.execute();
+        return true;
     }
 }
