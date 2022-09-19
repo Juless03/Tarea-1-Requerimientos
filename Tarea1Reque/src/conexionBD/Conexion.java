@@ -37,11 +37,7 @@ public class Conexion {
     private static Connection con;
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String user = "root";
-<<<<<<< HEAD
     private static final String pass = "rootroot";
-=======
-    private static final String pass = "Brajoscasso042003.";
->>>>>>> fc43382e91c8f26bec563f6d90310f90c3195a96
     private static final String url = "jdbc:mysql://localhost:3306/tarea1requerimientos";
 
     public static Connection conector() throws SQLException {

@@ -85,7 +85,6 @@ public class crearcuenta extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-<<<<<<< HEAD
         panel3 = new javax.swing.JPanel();
         crearCuentaTitulo = new javax.swing.JLabel();
         separadorInicioSesion2 = new javax.swing.JSeparator();
@@ -284,15 +283,14 @@ public class crearcuenta extends javax.swing.JDialog {
         jLabel4.setText("Es necesario escribir la contraseña que se quiera utilizar con la cuenta");
         panel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 390, 40));
 
-=======
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
->>>>>>> fc43382e91c8f26bec563f6d90310f90c3195a96
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
+
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,13 +306,12 @@ public class crearcuenta extends javax.swing.JDialog {
                     .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(156, 156, 156))
-=======
             .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
->>>>>>> fc43382e91c8f26bec563f6d90310f90c3195a96
+
         );
 
         pack();
@@ -494,7 +491,7 @@ public class crearcuenta extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-<<<<<<< HEAD
+
     private javax.swing.JButton botonRegistrar;
     private javax.swing.JButton botonRegresar;
     private javax.swing.JButton botonSiguiente1;
@@ -515,7 +512,6 @@ public class crearcuenta extends javax.swing.JDialog {
     private javax.swing.JLabel tituloLogo1;
     private javax.swing.JLabel tituloLogo2;
     private javax.swing.JRadioButton verContraseña;
-=======
->>>>>>> fc43382e91c8f26bec563f6d90310f90c3195a96
+
     // End of variables declaration//GEN-END:variables
 }

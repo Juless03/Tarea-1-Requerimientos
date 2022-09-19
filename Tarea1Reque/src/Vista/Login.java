@@ -32,12 +32,6 @@ public class Login extends javax.swing.JDialog {
     public Login(java.awt.Frame parent, boolean modal) throws IOException {
         super(parent, modal);
         initComponents();
-<<<<<<< HEAD
-=======
-        File pathToFile = new File("./imagenes/Logo.png");
-        BufferedImage bufferImage = ImageIO.read(pathToFile);
-        ImageIcon imageIcon = new ImageIcon(bufferImage);
->>>>>>> fc43382e91c8f26bec563f6d90310f90c3195a96
         this.setLocationRelativeTo(null);
         panel2.setVisible(false);
     }
@@ -95,12 +89,12 @@ public class Login extends javax.swing.JDialog {
         botonSiguiente = new javax.swing.JButton();
         tituloLogo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-<<<<<<< HEAD
+
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-=======
+
         correoTexto1 = new javax.swing.JTextField();
->>>>>>> fc43382e91c8f26bec563f6d90310f90c3195a96
+
         panel2 = new javax.swing.JPanel();
         iniciarSesionTitulo1 = new javax.swing.JLabel();
         separadorInicioSesion1 = new javax.swing.JSeparator();
@@ -159,8 +153,6 @@ public class Login extends javax.swing.JDialog {
         tituloLogo.setText("NBJ Corporation");
         panel1IniciarSesion.add(tituloLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 170, 40));
         panel1IniciarSesion.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
-
-<<<<<<< HEAD
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("¿No tiene una cuenta?");
         panel1IniciarSesion.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 150, 20));
@@ -174,7 +166,6 @@ public class Login extends javax.swing.JDialog {
             }
         });
         panel1IniciarSesion.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
-=======
         correoTexto1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         correoTexto1.setForeground(new java.awt.Color(102, 102, 102));
         correoTexto1.setText("Correo Electrónico");
@@ -208,8 +199,6 @@ public class Login extends javax.swing.JDialog {
             }
         });
         panel1IniciarSesion.add(correoTexto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 401, 43));
->>>>>>> fc43382e91c8f26bec563f6d90310f90c3195a96
-
         panel2.setBackground(new java.awt.Color(255, 255, 255));
         panel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         panel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -482,21 +471,13 @@ public class Login extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-<<<<<<< HEAD
+
                 .addContainerGap(220, Short.MAX_VALUE)
                 .addComponent(panel1IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(210, 210, 210))
-=======
-                .addGap(408, 408, 408)
-                .addComponent(panel1IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(431, 431, 431))
->>>>>>> fc43382e91c8f26bec563f6d90310f90c3195a96
+
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -556,12 +537,9 @@ public class Login extends javax.swing.JDialog {
                             JOptionPane.showMessageDialog(null,"Correo ingresado satisfactoriamente");
                             panel2.setVisible(true);
                             panel1IniciarSesion.setVisible(false);
-<<<<<<< HEAD
+
                             jLabel1.setText(correoTexto.getText());
-=======
-                            jLabel1.setText(apellidosTexto.getText());
-                        }
->>>>>>> fc43382e91c8f26bec563f6d90310f90c3195a96
+
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -630,13 +608,12 @@ public class Login extends javax.swing.JDialog {
           }
     }//GEN-LAST:event_verContraseñaMouseClicked
 
-<<<<<<< HEAD
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
        this.dispose();
         crearcuenta inicrearcuenta = new crearcuenta(this,true,Conexion);
        inicrearcuenta.setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
-=======
+
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonRegistrarActionPerformed
@@ -732,7 +709,7 @@ public class Login extends javax.swing.JDialog {
     private void nombreTexto3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTexto3KeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_nombreTexto3KeyTyped
->>>>>>> fc43382e91c8f26bec563f6d90310f90c3195a96
+
     
     
     /**
@@ -797,17 +774,17 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-<<<<<<< HEAD
+
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel logoLogin;
-=======
+
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField nombreTexto3;
->>>>>>> fc43382e91c8f26bec563f6d90310f90c3195a96
+
     private javax.swing.JPanel panel1IniciarSesion;
     private javax.swing.JPanel panel2;
     private javax.swing.JPanel panel3;
