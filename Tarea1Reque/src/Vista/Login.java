@@ -24,7 +24,9 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JDialog {
 
     private Conexion Conexion = new Conexion();
-    public String contraseña;
+    public String Correo;
+    public String Contraseña;
+    
     
     /**
      * Creates new form Login
@@ -34,6 +36,8 @@ public class Login extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         panel2.setVisible(false);
+        
+        
     }
 
     public Login(crearcuenta aThis, boolean modal, Conexion inicrearcuenta) {
@@ -44,16 +48,16 @@ public class Login extends javax.swing.JDialog {
     }
 
     private void cleanCorreo() {
-        if (apellidosTexto.getText().equals("Correo Electrónico")) {
-            apellidosTexto.setText("");
+        if (correoTexto.getText().equals("Correo Electrónico")) {
+            correoTexto.setText("");
         }
         //incorrectUsername.setVisible(false);
         //incorrectPassword.setVisible(false);
     }
 
     private void resetCorreo() {
-        if (apellidosTexto.getText().isEmpty()) {
-            apellidosTexto.setText("Correo Electrónico");
+        if (correoTexto.getText().isEmpty()) {
+            correoTexto.setText("Correo Electrónico");
         }
     }
 
@@ -84,18 +88,17 @@ public class Login extends javax.swing.JDialog {
     private void initComponents() {
 
         panel1IniciarSesion = new javax.swing.JPanel();
+        logoLogin = new javax.swing.JLabel();
         iniciarSesionTitulo = new javax.swing.JLabel();
         separadorInicioSesion = new javax.swing.JSeparator();
+        correoTexto = new javax.swing.JTextField();
         botonSiguiente = new javax.swing.JButton();
         tituloLogo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-
-        correoTexto1 = new javax.swing.JTextField();
-
         panel2 = new javax.swing.JPanel();
+        logoLogin1 = new javax.swing.JLabel();
         iniciarSesionTitulo1 = new javax.swing.JLabel();
         separadorInicioSesion1 = new javax.swing.JSeparator();
         botonSiguiente1 = new javax.swing.JButton();
@@ -106,25 +109,13 @@ public class Login extends javax.swing.JDialog {
         botonRegresar = new javax.swing.JButton();
         verContraseña = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
-        panel3 = new javax.swing.JPanel();
-        crearCuentaTitulo = new javax.swing.JLabel();
-        separadorInicioSesion2 = new javax.swing.JSeparator();
-        botonRegistrar = new javax.swing.JButton();
-        tituloLogo2 = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        jLabel3 = new javax.swing.JLabel();
-        botonRegresar1 = new javax.swing.JButton();
-        apellidosTexto = new javax.swing.JTextField();
-        correoelectronicoTexto = new javax.swing.JTextField();
-        nombreTexto3 = new javax.swing.JTextField();
-        separadorInicioSesion3 = new javax.swing.JSeparator();
-        separadorInicioSesion4 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panel1IniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
         panel1IniciarSesion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         panel1IniciarSesion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panel1IniciarSesion.add(logoLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 90, 90));
 
         iniciarSesionTitulo.setFont(new java.awt.Font("Tahoma", 0, 27)); // NOI18N
         iniciarSesionTitulo.setText("Iniciar sesión");
@@ -133,7 +124,41 @@ public class Login extends javax.swing.JDialog {
         separadorInicioSesion.setForeground(new java.awt.Color(0, 5, 249));
         separadorInicioSesion.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         separadorInicioSesion.setMinimumSize(new java.awt.Dimension(40, 40));
-        panel1IniciarSesion.add(separadorInicioSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 410, 10));
+        panel1IniciarSesion.add(separadorInicioSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 410, 10));
+
+        correoTexto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        correoTexto.setForeground(new java.awt.Color(102, 102, 102));
+        correoTexto.setText("Correo Electrónico");
+        correoTexto.setBorder(null);
+        correoTexto.setName("Place"); // NOI18N
+        correoTexto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                correoTextoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                correoTextoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                correoTextoMouseExited(evt);
+            }
+        });
+        correoTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                correoTextoActionPerformed(evt);
+            }
+        });
+        correoTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                correoTextoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                correoTextoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                correoTextoKeyTyped(evt);
+            }
+        });
+        panel1IniciarSesion.add(correoTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 401, 43));
 
         botonSiguiente.setBackground(new java.awt.Color(0, 5, 249));
         botonSiguiente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -151,13 +176,12 @@ public class Login extends javax.swing.JDialog {
         tituloLogo.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
         tituloLogo.setForeground(new java.awt.Color(102, 102, 255));
         tituloLogo.setText("NBJ Corporation");
-        panel1IniciarSesion.add(tituloLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 170, 40));
+        panel1IniciarSesion.add(tituloLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 170, 40));
         panel1IniciarSesion.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel3.setText("¿No tiene una cuenta?");
-        panel1IniciarSesion.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 150, 20));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel3.setText("¿No tiene una cuenta?");
+        panel1IniciarSesion.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 140, 20));
+
         jLabel4.setForeground(new java.awt.Color(51, 51, 255));
         jLabel4.setText("Cree una.");
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -165,43 +189,12 @@ public class Login extends javax.swing.JDialog {
                 jLabel4MouseClicked(evt);
             }
         });
-        panel1IniciarSesion.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
-        correoTexto1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        correoTexto1.setForeground(new java.awt.Color(102, 102, 102));
-        correoTexto1.setText("Correo Electrónico");
-        correoTexto1.setBorder(null);
-        correoTexto1.setName("Place"); // NOI18N
-        correoTexto1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                correoTexto1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                correoTexto1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                correoTexto1MouseExited(evt);
-            }
-        });
-        correoTexto1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                correoTexto1ActionPerformed(evt);
-            }
-        });
-        correoTexto1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                correoTexto1KeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                correoTexto1KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                correoTexto1KeyTyped(evt);
-            }
-        });
-        panel1IniciarSesion.add(correoTexto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 401, 43));
+        panel1IniciarSesion.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 130, 30));
+
         panel2.setBackground(new java.awt.Color(255, 255, 255));
         panel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         panel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panel2.add(logoLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 90, 90));
 
         iniciarSesionTitulo1.setFont(new java.awt.Font("Tahoma", 0, 27)); // NOI18N
         iniciarSesionTitulo1.setText("Escribir contraseña");
@@ -228,7 +221,7 @@ public class Login extends javax.swing.JDialog {
         tituloLogo1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
         tituloLogo1.setForeground(new java.awt.Color(102, 102, 255));
         tituloLogo1.setText("NBJ Corporation");
-        panel2.add(tituloLogo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 170, 40));
+        panel2.add(tituloLogo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 170, 40));
         panel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
@@ -262,6 +255,7 @@ public class Login extends javax.swing.JDialog {
         });
         panel2.add(passwordTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 401, 43));
 
+        botonRegresar.setBackground(new java.awt.Color(255, 255, 255));
         botonRegresar.setText("←");
         botonRegresar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 5, 249)));
         botonRegresar.setContentAreaFilled(false);
@@ -279,7 +273,7 @@ public class Login extends javax.swing.JDialog {
                 botonRegresarActionPerformed(evt);
             }
         });
-        panel2.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 40, 30));
+        panel2.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 40, 30));
 
         verContraseña.setContentAreaFilled(false);
         verContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -297,194 +291,22 @@ public class Login extends javax.swing.JDialog {
         jLabel2.setText("Mostrar Contraseña");
         panel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 130, 40));
 
-        panel3.setBackground(new java.awt.Color(255, 255, 255));
-        panel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        panel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        crearCuentaTitulo.setFont(new java.awt.Font("Tahoma", 0, 27)); // NOI18N
-        crearCuentaTitulo.setText("Crear cuenta");
-        panel3.add(crearCuentaTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 170, -1));
-
-        separadorInicioSesion2.setForeground(new java.awt.Color(0, 5, 249));
-        separadorInicioSesion2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        separadorInicioSesion2.setMinimumSize(new java.awt.Dimension(40, 40));
-        panel3.add(separadorInicioSesion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 340, 20));
-
-        botonRegistrar.setBackground(new java.awt.Color(0, 5, 249));
-        botonRegistrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        botonRegistrar.setForeground(new java.awt.Color(255, 255, 255));
-        botonRegistrar.setText("Registrar");
-        botonRegistrar.setToolTipText("");
-        botonRegistrar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.blue, java.awt.Color.blue));
-        botonRegistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRegistrarActionPerformed(evt);
-            }
-        });
-        panel3.add(botonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 129, 33));
-
-        tituloLogo2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
-        tituloLogo2.setForeground(new java.awt.Color(102, 102, 255));
-        tituloLogo2.setText("NBJ Corporation");
-        panel3.add(tituloLogo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 170, 40));
-        panel3.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel3.setEnabled(false);
-        jLabel3.setRequestFocusEnabled(false);
-        jLabel3.setVerifyInputWhenFocusTarget(false);
-        panel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 230, 30));
-
-        botonRegresar1.setText("←");
-        botonRegresar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 5, 249)));
-        botonRegresar1.setContentAreaFilled(false);
-        botonRegresar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        botonRegresar1.setFocusCycleRoot(true);
-        botonRegresar1.setFocusTraversalPolicyProvider(true);
-        botonRegresar1.setOpaque(true);
-        botonRegresar1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonRegresar1MouseEntered(evt);
-            }
-        });
-        botonRegresar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRegresar1ActionPerformed(evt);
-            }
-        });
-        panel3.add(botonRegresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 40, 30));
-
-        apellidosTexto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        apellidosTexto.setForeground(new java.awt.Color(102, 102, 102));
-        apellidosTexto.setText("Apellidos");
-        apellidosTexto.setBorder(null);
-        apellidosTexto.setName("Place"); // NOI18N
-        apellidosTexto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                apellidosTextoMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                apellidosTextoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                apellidosTextoMouseExited(evt);
-            }
-        });
-        apellidosTexto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                apellidosTextoActionPerformed(evt);
-            }
-        });
-        apellidosTexto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                apellidosTextoKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                apellidosTextoKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                apellidosTextoKeyTyped(evt);
-            }
-        });
-        panel3.add(apellidosTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 170, 30));
-
-        correoelectronicoTexto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        correoelectronicoTexto.setForeground(new java.awt.Color(102, 102, 102));
-        correoelectronicoTexto.setText("Correo Electrónico");
-        correoelectronicoTexto.setBorder(null);
-        correoelectronicoTexto.setName("Place"); // NOI18N
-        correoelectronicoTexto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                correoelectronicoTextoMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                correoelectronicoTextoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                correoelectronicoTextoMouseExited(evt);
-            }
-        });
-        correoelectronicoTexto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                correoelectronicoTextoActionPerformed(evt);
-            }
-        });
-        correoelectronicoTexto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                correoelectronicoTextoKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                correoelectronicoTextoKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                correoelectronicoTextoKeyTyped(evt);
-            }
-        });
-        panel3.add(correoelectronicoTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 340, 43));
-
-        nombreTexto3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        nombreTexto3.setForeground(new java.awt.Color(102, 102, 102));
-        nombreTexto3.setText("Nombre");
-        nombreTexto3.setBorder(null);
-        nombreTexto3.setName("Place"); // NOI18N
-        nombreTexto3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nombreTexto3MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                nombreTexto3MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                nombreTexto3MouseExited(evt);
-            }
-        });
-        nombreTexto3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreTexto3ActionPerformed(evt);
-            }
-        });
-        nombreTexto3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                nombreTexto3KeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                nombreTexto3KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nombreTexto3KeyTyped(evt);
-            }
-        });
-        panel3.add(nombreTexto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 130, 30));
-
-        separadorInicioSesion3.setForeground(new java.awt.Color(0, 5, 249));
-        separadorInicioSesion3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        separadorInicioSesion3.setMinimumSize(new java.awt.Dimension(40, 40));
-        panel3.add(separadorInicioSesion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 170, 30));
-
-        separadorInicioSesion4.setForeground(new java.awt.Color(0, 5, 249));
-        separadorInicioSesion4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        separadorInicioSesion4.setMinimumSize(new java.awt.Dimension(40, 40));
-        panel3.add(separadorInicioSesion4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 130, 30));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-
-                .addContainerGap(220, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(408, 408, 408)
                 .addComponent(panel1IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(210, 210, 210))
-
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(160, 160, 160)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel1IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(182, Short.MAX_VALUE))
@@ -493,53 +315,49 @@ public class Login extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void apellidosTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidosTextoActionPerformed
+    private void correoTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correoTextoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_apellidosTextoActionPerformed
+    }//GEN-LAST:event_correoTextoActionPerformed
 
     
     
-    private void apellidosTextoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_apellidosTextoMouseClicked
+    private void correoTextoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_correoTextoMouseClicked
         cleanCorreo();
-    }//GEN-LAST:event_apellidosTextoMouseClicked
+    }//GEN-LAST:event_correoTextoMouseClicked
 
-    private void apellidosTextoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_apellidosTextoMouseExited
+    private void correoTextoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_correoTextoMouseExited
         resetCorreo();        // TODO add your handling code here:
-    }//GEN-LAST:event_apellidosTextoMouseExited
+    }//GEN-LAST:event_correoTextoMouseExited
 
-    private void apellidosTextoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_apellidosTextoMouseEntered
+    private void correoTextoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_correoTextoMouseEntered
         cleanCorreo();
-    }//GEN-LAST:event_apellidosTextoMouseEntered
+    }//GEN-LAST:event_correoTextoMouseEntered
 
-    private void apellidosTextoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidosTextoKeyPressed
+    private void correoTextoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoTextoKeyPressed
         cleanCorreo();    // TODO add your handling code here:
-    }//GEN-LAST:event_apellidosTextoKeyPressed
+    }//GEN-LAST:event_correoTextoKeyPressed
 
-    private void apellidosTextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidosTextoKeyTyped
+    private void correoTextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoTextoKeyTyped
 
-    }//GEN-LAST:event_apellidosTextoKeyTyped
+    }//GEN-LAST:event_correoTextoKeyTyped
 
-    private void apellidosTextoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidosTextoKeyReleased
+    private void correoTextoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoTextoKeyReleased
        
-    }//GEN-LAST:event_apellidosTextoKeyReleased
+    }//GEN-LAST:event_correoTextoKeyReleased
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
 
-        if(!apellidosTexto.getText().isEmpty()) {
-                String Correo;
-                Correo = apellidosTexto.getText().toLowerCase();
+        if(!correoTexto.getText().isEmpty()) {
+                Correo = correoTexto.getText();
                 try {
-                    String contraseñaPersona;
-                    contraseña = Conexion.personMail(Correo);
-                    if (contraseña == null) {
+                    Contraseña = Conexion.personMail(Correo);
+                    if(Contraseña == null){ 
                         JOptionPane.showMessageDialog(null, "Error\nEl correo no se encuentra en el sistema. Intente de nuevo");
                     } else {
-                            JOptionPane.showMessageDialog(null,"Correo ingresado satisfactoriamente");
-                            panel2.setVisible(true);
-                            panel1IniciarSesion.setVisible(false);
-
-                            jLabel1.setText(correoTexto.getText());
-
+                        JOptionPane.showMessageDialog(null,"Correo ingresado satisfactoriamente");
+                        panel2.setVisible(true);
+                        panel1IniciarSesion.setVisible(false);
+                        jLabel1.setText(correoTexto.getText());
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -552,14 +370,13 @@ public class Login extends javax.swing.JDialog {
     private void botonSiguiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguiente1ActionPerformed
           if(!passwordTexto.getText().isEmpty()) {
             String ContraseñaIngresada;
-            String contraPrueba = "adolfo";
             ContraseñaIngresada = String.valueOf(passwordTexto.getPassword());
-              if(ContraseñaIngresada.equals(contraseña)){
-                  JOptionPane.showMessageDialog(null,"Inició sesión con éxito.");
-                  this.dispose();
-              } else {
-                  JOptionPane.showMessageDialog(null, "Error\nContraseña incorrecta. Intente de nuevo");
-              }
+            if(ContraseñaIngresada.equals(Contraseña)) {
+                JOptionPane.showMessageDialog(null,"Inició sesión con éxito.");
+                this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error\nContraseña incorrecta.");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Error\nCampo vacío.");
         }
@@ -609,107 +426,11 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_verContraseñaMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-       this.dispose();
-        crearcuenta inicrearcuenta = new crearcuenta(this,true,Conexion);
-       inicrearcuenta.setVisible(true);
+
+       crearcuenta initcrearcuenta = new crearcuenta(this,true,Conexion);
+       initcrearcuenta.setVisible(true);
+       
     }//GEN-LAST:event_jLabel4MouseClicked
-
-    private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonRegistrarActionPerformed
-
-    private void botonRegresar1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegresar1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonRegresar1MouseEntered
-
-    private void botonRegresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonRegresar1ActionPerformed
-
-    private void correoTexto1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_correoTexto1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correoTexto1MouseClicked
-
-    private void correoTexto1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_correoTexto1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correoTexto1MouseEntered
-
-    private void correoTexto1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_correoTexto1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correoTexto1MouseExited
-
-    private void correoTexto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correoTexto1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correoTexto1ActionPerformed
-
-    private void correoTexto1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoTexto1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correoTexto1KeyPressed
-
-    private void correoTexto1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoTexto1KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correoTexto1KeyReleased
-
-    private void correoTexto1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoTexto1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correoTexto1KeyTyped
-
-    private void correoelectronicoTextoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_correoelectronicoTextoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correoelectronicoTextoMouseClicked
-
-    private void correoelectronicoTextoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_correoelectronicoTextoMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correoelectronicoTextoMouseEntered
-
-    private void correoelectronicoTextoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_correoelectronicoTextoMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correoelectronicoTextoMouseExited
-
-    private void correoelectronicoTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correoelectronicoTextoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correoelectronicoTextoActionPerformed
-
-    private void correoelectronicoTextoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoelectronicoTextoKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correoelectronicoTextoKeyPressed
-
-    private void correoelectronicoTextoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoelectronicoTextoKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correoelectronicoTextoKeyReleased
-
-    private void correoelectronicoTextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoelectronicoTextoKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_correoelectronicoTextoKeyTyped
-
-    private void nombreTexto3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nombreTexto3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreTexto3MouseClicked
-
-    private void nombreTexto3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nombreTexto3MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreTexto3MouseEntered
-
-    private void nombreTexto3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nombreTexto3MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreTexto3MouseExited
-
-    private void nombreTexto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTexto3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreTexto3ActionPerformed
-
-    private void nombreTexto3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTexto3KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreTexto3KeyPressed
-
-    private void nombreTexto3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTexto3KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreTexto3KeyReleased
-
-    private void nombreTexto3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTexto3KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreTexto3KeyTyped
-
     
     
     /**
@@ -760,43 +481,27 @@ public class Login extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField apellidosTexto;
-    private javax.swing.JButton botonRegistrar;
     private javax.swing.JButton botonRegresar;
-    private javax.swing.JButton botonRegresar1;
     private javax.swing.JButton botonSiguiente;
     private javax.swing.JButton botonSiguiente1;
-    private javax.swing.JTextField correoTexto1;
-    private javax.swing.JTextField correoelectronicoTexto;
-    private javax.swing.JLabel crearCuentaTitulo;
+    private javax.swing.JTextField correoTexto;
     private javax.swing.JLabel iniciarSesionTitulo;
     private javax.swing.JLabel iniciarSesionTitulo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel logoLogin;
-
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField nombreTexto3;
-
+    private javax.swing.JLabel logoLogin1;
     private javax.swing.JPanel panel1IniciarSesion;
     private javax.swing.JPanel panel2;
-    private javax.swing.JPanel panel3;
     private javax.swing.JPasswordField passwordTexto;
     private javax.swing.JSeparator separadorInicioSesion;
     private javax.swing.JSeparator separadorInicioSesion1;
-    private javax.swing.JSeparator separadorInicioSesion2;
-    private javax.swing.JSeparator separadorInicioSesion3;
-    private javax.swing.JSeparator separadorInicioSesion4;
     private javax.swing.JLabel tituloLogo;
     private javax.swing.JLabel tituloLogo1;
-    private javax.swing.JLabel tituloLogo2;
     private javax.swing.JRadioButton verContraseña;
     // End of variables declaration//GEN-END:variables
 }

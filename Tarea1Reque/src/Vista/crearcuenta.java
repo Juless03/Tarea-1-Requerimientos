@@ -105,6 +105,7 @@ public class crearcuenta extends javax.swing.JDialog {
         verContraseña = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -283,20 +284,19 @@ public class crearcuenta extends javax.swing.JDialog {
         jLabel4.setText("Es necesario escribir la contraseña que se quiera utilizar con la cuenta");
         panel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 390, 40));
 
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante", "Profesor", "Admin" }));
+        panel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 110, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(401, Short.MAX_VALUE))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,12 +306,6 @@ public class crearcuenta extends javax.swing.JDialog {
                     .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(156, 156, 156))
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-
         );
 
         pack();
@@ -381,7 +375,7 @@ public class crearcuenta extends javax.swing.JDialog {
             }
         }
         if(validandocontraseña){
-            String tipo = "Estudiante";
+            String tipo = (String) jComboBox1.getSelectedItem();
             try {
                 validandoRegistro = inicrearcuenta.addUser(Correo,Contraseña,tipo);
             } catch (SQLException ex) {
@@ -491,13 +485,13 @@ public class crearcuenta extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-
     private javax.swing.JButton botonRegistrar;
     private javax.swing.JButton botonRegresar;
     private javax.swing.JButton botonSiguiente1;
     private javax.swing.JTextField correoelectronicoTexto;
     private javax.swing.JLabel crearCuentaTitulo;
     private javax.swing.JLabel iniciarSesionTitulo1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -512,6 +506,5 @@ public class crearcuenta extends javax.swing.JDialog {
     private javax.swing.JLabel tituloLogo1;
     private javax.swing.JLabel tituloLogo2;
     private javax.swing.JRadioButton verContraseña;
-
     // End of variables declaration//GEN-END:variables
 }
