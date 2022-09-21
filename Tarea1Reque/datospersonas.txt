@@ -1,3 +1,4 @@
 Bra@gmail.com,1234
 Jun@gmail.com,1234
-Nel@gmail.com,1234hule@gmail.com,buenosdias123
+Nel@gmail.com,1234
+julian@gmail.com,julian123

@@ -80,7 +80,7 @@ public class crearcuenta extends javax.swing.JDialog {
         try{
             String filePath = nombreArchivo;
             FileWriter fw = new FileWriter(filePath, true);    
-            String lineToAppend = correo+","+ contraseña;    
+            String lineToAppend = "\n" + correo+","+ contraseña;    
             fw.write(lineToAppend);
             fw.close();
         }
