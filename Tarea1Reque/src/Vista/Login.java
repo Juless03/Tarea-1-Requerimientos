@@ -8,8 +8,12 @@ package Vista;
 import conexionBD.Conexion;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -26,6 +30,12 @@ public class Login extends javax.swing.JDialog {
     private Conexion Conexion = new Conexion();
     public String Correo;
     public String Contraseña;
+    int contador = 0;
+    ArrayList<String> arregloCorreos = new ArrayList<String>(); 
+    ArrayList<String> arregloContrasennas = new ArrayList<String>(); 
+        
+    String archivo = "datospersonas.txt";
+   
     
     
     /**
@@ -77,6 +87,71 @@ public class Login extends javax.swing.JDialog {
         }
     }
     
+     public static int algoritmoBinario(ArrayList<String> arreglo, String busqueda, int izquierda, int derecha){
+        // Si izquierda es mayor que derecha significa que no encontramos nada
+        if (izquierda > derecha) {
+            return -1;
+        }
+        // Calculamos las mitades...
+        int indiceDelElementoDelMedio = (int) Math.floor((izquierda + derecha) / 2);
+        String elementoDelMedio = arreglo.get(indiceDelElementoDelMedio);
+
+        // Primero vamos a comparar y luego vamos a ver si el resultado es negativo,
+        // positivo o 0
+        int resultadoDeLaComparacion = busqueda.compareTo(elementoDelMedio);
+        // Si el resultado de la comparación es 0, significa que ambos elementos son iguales
+        // y por lo tanto quiere decir que hemos encontrado la búsqueda
+        if (resultadoDeLaComparacion == 0) {
+            return indiceDelElementoDelMedio;
+        }
+        // Si no, entonces vemos si está a la izquierda o derecha
+        if (resultadoDeLaComparacion < 0) {
+            derecha = indiceDelElementoDelMedio - 1;
+            return algoritmoBinario(arreglo, busqueda, izquierda, derecha);
+        } else {
+            izquierda = indiceDelElementoDelMedio + 1;
+            return algoritmoBinario(arreglo, busqueda, izquierda, derecha);
+        }
+    }
+    public static void leerArchivo(String nombreArchivo,ArrayList<String> arregloCorreos,ArrayList<String>arregloContrasennas){
+        File archivo = new File(nombreArchivo);
+        try{
+            Scanner sc = new Scanner(archivo);
+            while(sc.hasNextLine()){
+                String data = sc.nextLine();
+                String[] parts = data.split(",");
+                String correo = parts[0];
+                String contrasenna = parts[1];
+                arregloCorreos.add(correo);
+                arregloContrasennas.add(contrasenna);
+                //System.out.println(data);
+                System.out.println(arregloCorreos + " Correo");
+                System.out.println(arregloContrasennas +" contraseña");
+                //System.out.println("Initial ArrayList:\n" + arregloCorreos);
+            }
+        }catch(FileNotFoundException e){
+            System.out.println("Excepcion al abrir archivo" + e);
+        }   
+    }  
+    private void escribirArchivo(String correo, String contraseña,String nombreArchivo){
+        try{
+            String filePath = nombreArchivo;
+            FileWriter fw = new FileWriter(filePath, true);    
+            String lineToAppend = correo+","+ contraseña;    
+            fw.write(lineToAppend);
+            fw.close();
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
+    }
+    public static void enviarBuscar(ArrayList<String> arregloCorreos,ArrayList<String>arregloContrasennas,String buscar,boolean aBuscar,int izquierda, int derecha){
+        if(aBuscar = true){
+            algoritmoBinario(arregloCorreos,buscar,izquierda,derecha);
+        }else{
+            algoritmoBinario(arregloContrasennas,buscar,izquierda,derecha);
+        }
+    }
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -158,7 +233,7 @@ public class Login extends javax.swing.JDialog {
                 correoTextoKeyTyped(evt);
             }
         });
-        panel1IniciarSesion.add(correoTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 401, 43));
+        panel1IniciarSesion.add(correoTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 401, 30));
 
         botonSiguiente.setBackground(new java.awt.Color(0, 5, 249));
         botonSiguiente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -179,9 +254,11 @@ public class Login extends javax.swing.JDialog {
         panel1IniciarSesion.add(tituloLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 170, 40));
         panel1IniciarSesion.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("¿No tiene una cuenta?");
-        panel1IniciarSesion.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 140, 20));
+        panel1IniciarSesion.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 160, 20));
 
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 255));
         jLabel4.setText("Cree una.");
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -189,7 +266,7 @@ public class Login extends javax.swing.JDialog {
                 jLabel4MouseClicked(evt);
             }
         });
-        panel1IniciarSesion.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 130, 30));
+        panel1IniciarSesion.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 130, 20));
 
         panel2.setBackground(new java.awt.Color(255, 255, 255));
         panel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
@@ -255,7 +332,6 @@ public class Login extends javax.swing.JDialog {
         });
         panel2.add(passwordTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 401, 43));
 
-        botonRegresar.setBackground(new java.awt.Color(255, 255, 255));
         botonRegresar.setText("←");
         botonRegresar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 5, 249)));
         botonRegresar.setContentAreaFilled(false);
@@ -348,19 +424,17 @@ public class Login extends javax.swing.JDialog {
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
 
         if(!correoTexto.getText().isEmpty()) {
+            leerArchivo(archivo,arregloCorreos,arregloContrasennas);
                 Correo = correoTexto.getText();
-                try {
-                    Contraseña = Conexion.personMail(Correo);
-                    if(Contraseña == null){ 
-                        JOptionPane.showMessageDialog(null, "Error\nEl correo no se encuentra en el sistema. Intente de nuevo");
-                    } else {
-                        JOptionPane.showMessageDialog(null,"Correo ingresado satisfactoriamente");
-                        panel2.setVisible(true);
-                        panel1IniciarSesion.setVisible(false);
-                        jLabel1.setText(correoTexto.getText());
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                int validandoCorreo;
+                validandoCorreo = algoritmoBinario(arregloCorreos,Correo,0,contador);
+                if(validandoCorreo != 0){
+                    JOptionPane.showMessageDialog(null, "Error\nEl correo no se encuentra en el sistema. Intente de nuevo");
+                } else {
+                    JOptionPane.showMessageDialog(null,"Correo ingresado satisfactoriamente");
+                    panel2.setVisible(true);
+                    panel1IniciarSesion.setVisible(false);
+                    jLabel1.setText(correoTexto.getText());
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Error\nCampo vacío.");
@@ -371,11 +445,14 @@ public class Login extends javax.swing.JDialog {
           if(!passwordTexto.getText().isEmpty()) {
             String ContraseñaIngresada;
             ContraseñaIngresada = String.valueOf(passwordTexto.getPassword());
-            if(ContraseñaIngresada.equals(Contraseña)) {
-                JOptionPane.showMessageDialog(null,"Inició sesión con éxito.");
-                this.dispose();
+            
+            int validandoContraseña;
+            validandoContraseña = algoritmoBinario(arregloContrasennas,ContraseñaIngresada,0,contador);
+              if(validandoContraseña != 0){
+                JOptionPane.showMessageDialog(null, "Error\nContraseña incorrecta.");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error\nContraseña incorrecta.");
+                    JOptionPane.showMessageDialog(null,"Inició sesión con éxito.");
+                    this.dispose();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Error\nCampo vacío.");
@@ -442,6 +519,7 @@ public class Login extends javax.swing.JDialog {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -459,7 +537,7 @@ public class Login extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

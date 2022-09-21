@@ -7,6 +7,8 @@ package Vista;
 
 
 import conexionBD.Conexion;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -74,7 +76,18 @@ public class crearcuenta extends javax.swing.JDialog {
             verContraseña.setVisible(false);
         }
     }
-    
+      private void escribirArchivo(String correo, String contraseña,String nombreArchivo){
+        try{
+            String filePath = nombreArchivo;
+            FileWriter fw = new FileWriter(filePath, true);    
+            String lineToAppend = correo+","+ contraseña;    
+            fw.write(lineToAppend);
+            fw.close();
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,7 +118,6 @@ public class crearcuenta extends javax.swing.JDialog {
         verContraseña = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -244,7 +256,6 @@ public class crearcuenta extends javax.swing.JDialog {
         });
         panel2.add(passwordTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 401, 43));
 
-        botonRegresar.setBackground(new java.awt.Color(255, 255, 255));
         botonRegresar.setText("←");
         botonRegresar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 5, 249)));
         botonRegresar.setContentAreaFilled(false);
@@ -283,9 +294,6 @@ public class crearcuenta extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel4.setText("Es necesario escribir la contraseña que se quiera utilizar con la cuenta");
         panel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 390, 40));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante", "Profesor", "Admin" }));
-        panel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 110, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -375,26 +383,17 @@ public class crearcuenta extends javax.swing.JDialog {
             }
         }
         if(validandocontraseña){
-            String tipo = (String) jComboBox1.getSelectedItem();
-            try {
-                validandoRegistro = inicrearcuenta.addUser(Correo,Contraseña,tipo);
-            } catch (SQLException ex) {
-                Logger.getLogger(crearcuenta.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
-                Logger.getLogger(crearcuenta.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            if(validandoRegistro){
+            escribirArchivo(Correo, Contraseña,"datospersonas.txt");
                 JOptionPane.showMessageDialog(null, "Registro con exito");
                 this.setVisible(false);
                 this.dispose();
                 Login initloign = new Login(this,true,inicrearcuenta);
-                initloign.setVisible(true); 
-                
+                initloign.setVisible(true);   
             } else {
                 JOptionPane.showMessageDialog(null, "Error\nRegistro fallido");
                 
             }
-        }
+        
     }//GEN-LAST:event_botonSiguiente1ActionPerformed
 
     private void passwordTextoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTextoMouseClicked
@@ -491,7 +490,6 @@ public class crearcuenta extends javax.swing.JDialog {
     private javax.swing.JTextField correoelectronicoTexto;
     private javax.swing.JLabel crearCuentaTitulo;
     private javax.swing.JLabel iniciarSesionTitulo1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
